@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
         const itemSubdomains = [];
 
         domain.forEach(d => {
-            itemSubdomains.push(d.subdomain)
+            itemSubdomains.push(d.subdomain);
         })
 
         domains.push({"domain":item.domain,"count":domain.length,"subdomains":itemSubdomains});

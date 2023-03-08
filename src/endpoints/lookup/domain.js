@@ -21,7 +21,5 @@ module.exports = async (req, res) => {
 
     data = data[0];
 
-    delete data.owner.email;
-
-    return res.status(200).json(data)
+    return res.status(200).json(data);
 }

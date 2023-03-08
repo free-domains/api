@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
 
     data = data.filter(item => item.domain === domain);
 
+    if(!data[0]) return res.status(404).json({ "error": "DOMAIN_NOT_FOUND" });
+
     const ownerEmails = [];
     let owners = 0;
 
