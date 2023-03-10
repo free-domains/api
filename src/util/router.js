@@ -3,6 +3,17 @@ const { Router } = require("express");
 const router = Router();
 const routes = require("./routes");
 
+const rateLimit = require("express-rate-limit");
+
+const limiter = rateLimit({
+	windowMs: 60 * 60 * 1000, // 1 hour
+	max: 240, // 240 requests
+	standardHeaders: true,
+	legacyHeaders: false
+})
+
+router.use(limiter);
+
 router.get("/", async (req, res) => {
     routes.index(req, res);
 })
