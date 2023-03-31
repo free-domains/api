@@ -15,25 +15,25 @@ module.exports = async (req, res) => {
         return res.status(500);
     }
 
-    const userDomains = data.filter(item => item.owner.email.replace(" (at) ", "@") === email);
+    const userDomains = data.filter(item => item.owner.email.replace(" (at) ", "@").toLowerCase() === email.toLowerCase());
 
     if(!userDomains.length) return res.status(404).json({ "error": "USER_NOT_FOUND" });
 
     let subdomains = [];
 
     userDomains.forEach(item => {
-        subdomains.push(`${item.subdomain}.${item.domain}`);
+        subdomains.push(`${item.subdomain.toLowerCase()}.${item.domain.toLowerCase()}`);
     })
 
     const domains = [];
     const checkedDomains = [];
 
     data.forEach(item => {
-        if(checkedDomains.includes(item.domain)) return;
+        if(checkedDomains.includes(item.domain.toLowerCase())) return;
 
-        checkedDomains.push(item.domain);
+        checkedDomains.push(item.domain.toLowerCase());
 
-        let domain = userDomains.filter(i => i.domain === item.domain);
+        let domain = userDomains.filter(i => i.domain.toLowerCase() === item.domain.toLowerCase());
 
         const itemSubdomains = [];
 

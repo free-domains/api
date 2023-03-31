@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     let data;
 
     try {
-        const result = await fetch(`https://api.github.com/repos/free-domains/register/contents/domains/${domain}.json`);
+        const result = await fetch(`https://api.github.com/repos/free-domains/register/contents/domains/${domain.toLowerCase()}.json`);
 
         data = result;
     } catch(err) {

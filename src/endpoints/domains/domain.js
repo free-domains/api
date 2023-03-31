@@ -1,7 +1,7 @@
 module.exports = async (req, res) => {
     const axios = require("axios");
 
-    const domain = req.params.domain;
+    const domain = req.params.domain.toLowerCase();
 
     let data;
 

@@ -15,9 +15,9 @@ module.exports = async (req, res) => {
     let owners = 0;
 
     data.forEach(item => {
-        if(ownerEmails.includes(item.owner.email)) return;
+        if(ownerEmails.includes(item.owner.email.toLowerCase())) return;
 
-        ownerEmails.push(item.owner.email);
+        ownerEmails.push(item.owner.email.toLowerCase());
         owners++;
     })
 
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     domains.forEach(domain => {
         const obj = {
             "domain": domain,
-            "subdomains": `${data.filter(item => item.domain === domain).length}`
+            "subdomains": `${data.filter(item => item.domain.toLowerCase() === domain.toLowerCase()).length}`
         }
 
         domainData.push(obj);

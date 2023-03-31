@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         return res.status(500);
     }
 
-    data = data.filter(item => `${item.subdomain}.${item.domain}` === domain);
+    data = data.filter(item => `${item.subdomain.toLowerCase()}.${item.domain.toLowerCase()}` === domain.toLowerCase());
 
     if(!data[0]) return res.status(404).json({ "error": "DOMAIN_NOT_FOUND" });
 
