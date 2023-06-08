@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
 
     const domain = req.query.domain;
 
-    if(!domain) return res.status(400).json({ "error": "NO_DOMAIN" });
+    if(!domain) return res.status(400).json({ "code": "NO_DOMAIN" });
 
     let data;
 
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         return res.status(500);
     }
 
-    if(data.status == 404) return res.status(204).json({ "message": "DOMAIN_AVAILABLE" });
+    if(data.status == 404) return res.status(200).json({ "message": "DOMAIN_AVAILABLE" });
 
     res.status(200).json({ "message": "DOMAIN_UNAVAILABLE" });
 }

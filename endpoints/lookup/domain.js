@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
 
     const domain = req.query.domain;
 
-    if(!domain) return res.status(400).json({ "error": "NO_DOMAIN" });
+    if(!domain) return res.status(400).json({ "code": "NO_DOMAIN" });
 
     let data;
 
@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 
     data = data.filter(item => `${item.subdomain.toLowerCase()}.${item.domain.toLowerCase()}` === domain.toLowerCase());
 
-    if(!data[0]) return res.status(404).json({ "error": "DOMAIN_NOT_FOUND" });
+    if(!data[0]) return res.status(404).json({ "code": "DOMAIN_NOT_FOUND" });
 
     data = data[0];
 

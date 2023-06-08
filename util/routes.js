@@ -1,8 +1,5 @@
 module.exports = {
     "check": require("../endpoints/check"),
-    "cli": {
-        "oauth": require("../endpoints/cli/oauth")
-    },
     "count": require("../endpoints/count"),
     "domains": {
         "domain": require("../endpoints/domains/domain")

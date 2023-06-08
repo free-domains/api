@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
 
     const email = req.query.email;
 
-    if(!email) return res.status(400).json({ "error": "NO_EMAIL" });
+    if(!email) return res.status(400).json({ "code": "NO_EMAIL" });
 
     let data;
 
@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 
     const userDomains = data.filter(item => item.owner.email.replace(" (at) ", "@").toLowerCase() === email.toLowerCase());
 
-    if(!userDomains.length) return res.status(404).json({ "error": "USER_NOT_FOUND" });
+    if(!userDomains.length) return res.status(404).json({ "code": "USER_NOT_FOUND" });
 
     let subdomains = [];
 
