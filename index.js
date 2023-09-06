@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 require("dotenv").config();
+const port = 3000;
 
 const Sentry = require("@sentry/node");
 const bodyParser = require("body-parser");
@@ -18,7 +19,6 @@ Sentry.init({
 })
 
 const router = require("./util/router");
-const port = process.env.port;
 
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
