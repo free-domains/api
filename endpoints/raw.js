@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
     let data;
 
     try {
-        const result = await axios.get("https://raw.freesubdomains.org");
+        const result = await axios.get("https://free-domains.github.io/raw");
 
         data = result.data;
     } catch(err) {
