@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 require("dotenv").config();
-const port = 3000;
+const port = process.env.port || 3000;
 
 const Sentry = require("@sentry/node");
 const bodyParser = require("body-parser");
@@ -35,5 +35,18 @@ app.use("/", router);
 app.use(Sentry.Handlers.errorHandler());
 
 app.listen(port, () => {
-    console.log(`[API] Listening on Port: ${port}`);
+    console.log(`Listening on Port: ${port}`);
 })
+
+const { exec } = require("child_process");
+
+// Automatic Git Pull
+setInterval(() => {
+    exec("git pull", (err, stdout) => {
+        if(err) return console.log(err);
+        if(stdout.includes("Already up to date.")) return;
+
+        console.log(stdout);
+        process.exit();
+    })
+}, 30 * 1000) // 30 seconds
